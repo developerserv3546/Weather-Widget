@@ -5,9 +5,10 @@ import com.developer35.serega.weatherwidget.entities.WeatherEntity;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface WeatherApi {
 
-    @GET("34dcc0a117458b08/conditions/q/autoip.json")
-    Call<WeatherEntity> getForecast();
+    @GET("{key}/conditions/q/autoip.json")
+    Call<WeatherEntity> getForecast(@Path("key") String key);
 }

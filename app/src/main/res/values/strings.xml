@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Weather Widget</string>
+    <string name="key_wunderground_com">34dcc0a117458b08</string>
+    <string name="undefined">undefined</string>
 </resources>
