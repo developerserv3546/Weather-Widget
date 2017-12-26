@@ -4,7 +4,7 @@ package com.developer35.serega.weatherwidget.entities;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DisplayLocation {
+public class DisplayLocationEntity {
 
     @SerializedName("full")
     @Expose
@@ -104,7 +104,7 @@ public class DisplayLocation {
 
     @Override
     public String toString() {
-        return "DisplayLocation{" +
+        return "DisplayLocationEntity{" +
                 "full='" + full + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +

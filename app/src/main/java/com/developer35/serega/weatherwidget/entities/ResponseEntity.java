@@ -4,7 +4,7 @@ package com.developer35.serega.weatherwidget.entities;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Response {
+public class ResponseEntity {
 
     @SerializedName("version")
     @Expose
@@ -16,7 +16,7 @@ public class Response {
 
     @SerializedName("features")
     @Expose
-    private Features features;
+    private FeaturesEntity featuresEntity;
 
     public String getVersion() {
         return version;
@@ -26,16 +26,16 @@ public class Response {
         return termsofService;
     }
 
-    public Features getFeatures() {
-        return features;
+    public FeaturesEntity getFeaturesEntity() {
+        return featuresEntity;
     }
 
     @Override
     public String toString() {
-        return "Response{" +
+        return "ResponseEntity{" +
                 "version='" + version + '\'' +
                 ", termsofService='" + termsofService + '\'' +
-                ", features=" + features +
+                ", featuresEntity=" + featuresEntity +
                 '}';
     }
 }

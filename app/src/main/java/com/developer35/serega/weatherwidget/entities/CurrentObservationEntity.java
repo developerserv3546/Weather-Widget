@@ -4,23 +4,23 @@ package com.developer35.serega.weatherwidget.entities;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class CurrentObservation {
+public class CurrentObservationEntity {
 
     @SerializedName("image")
     @Expose
-    private Image image;
+    private ImageEntity imageEntity;
 
     @SerializedName("display_location")
     @Expose
-    private DisplayLocation displayLocation;
+    private DisplayLocationEntity displayLocationEntity;
 
     @SerializedName("observation_location")
     @Expose
-    private ObservationLocation observationLocation;
+    private ObservationLocationEntity observationLocationEntity;
 
     @SerializedName("estimated")
     @Expose
-    private Estimated estimated;
+    private EstimatedEntity estimatedEntity;
 
     @SerializedName("station_id")
     @Expose
@@ -230,20 +230,20 @@ public class CurrentObservation {
     @Expose
     private String nowcast;
 
-    public Image getImage() {
-        return image;
+    public ImageEntity getImageEntity() {
+        return imageEntity;
     }
 
-    public DisplayLocation getDisplayLocation() {
-        return displayLocation;
+    public DisplayLocationEntity getDisplayLocationEntity() {
+        return displayLocationEntity;
     }
 
-    public ObservationLocation getObservationLocation() {
-        return observationLocation;
+    public ObservationLocationEntity getObservationLocationEntity() {
+        return observationLocationEntity;
     }
 
-    public Estimated getEstimated() {
-        return estimated;
+    public EstimatedEntity getEstimatedEntity() {
+        return estimatedEntity;
     }
 
     public String getStationId() {
@@ -456,11 +456,11 @@ public class CurrentObservation {
 
     @Override
     public String toString() {
-        return "CurrentObservation{" +
-                "image=" + image +
-                ", displayLocation=" + displayLocation +
-                ", observationLocation=" + observationLocation +
-                ", estimated=" + estimated +
+        return "CurrentObservationEntity{" +
+                "imageEntity=" + imageEntity +
+                ", displayLocationEntity=" + displayLocationEntity +
+                ", observationLocationEntity=" + observationLocationEntity +
+                ", estimatedEntity=" + estimatedEntity +
                 ", stationId='" + stationId + '\'' +
                 ", observationTime='" + observationTime + '\'' +
                 ", observationTimeRfc822='" + observationTimeRfc822 + '\'' +

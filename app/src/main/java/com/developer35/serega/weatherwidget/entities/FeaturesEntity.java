@@ -4,7 +4,7 @@ package com.developer35.serega.weatherwidget.entities;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Features {
+public class FeaturesEntity {
 
     @SerializedName("conditions")
     @Expose
@@ -16,7 +16,7 @@ public class Features {
 
     @Override
     public String toString() {
-        return "Features{" +
+        return "FeaturesEntity{" +
                 "conditions=" + conditions +
                 '}';
     }

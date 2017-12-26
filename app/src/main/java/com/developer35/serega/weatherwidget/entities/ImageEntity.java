@@ -4,7 +4,7 @@ package com.developer35.serega.weatherwidget.entities;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Image {
+public class ImageEntity {
 
     @SerializedName("url")
     @Expose
@@ -32,7 +32,7 @@ public class Image {
 
     @Override
     public String toString() {
-        return "Image{" +
+        return "ImageEntity{" +
                 "url='" + url + '\'' +
                 ", title='" + title + '\'' +
                 ", link='" + link + '\'' +

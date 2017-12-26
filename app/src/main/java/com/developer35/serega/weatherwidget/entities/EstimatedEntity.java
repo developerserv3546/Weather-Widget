@@ -1,5 +1,5 @@
 package com.developer35.serega.weatherwidget.entities;
 
 
-public class Estimated {
+public class EstimatedEntity {
 }
