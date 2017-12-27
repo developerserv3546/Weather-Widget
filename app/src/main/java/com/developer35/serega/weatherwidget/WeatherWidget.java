@@ -4,6 +4,7 @@ package com.developer35.serega.weatherwidget;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -34,20 +35,23 @@ public class WeatherWidget extends AppWidgetProvider {
         call.enqueue(new Callback<WeatherEntity>() {
             @Override
             public void onResponse(Call<WeatherEntity> call, Response<WeatherEntity> response) {
+
+                WeatherEntity entity = null;
+
                 if (response.isSuccessful()) {
-                    WeatherEntity entity = response.body();
-                    if (entity != null) {
-                        update(context, entity, appWidgetManager, appWidgetIds);
-                    } else {
+                    entity = response.body();
+                    if (entity == null) {
                         Log.e(TAG, "WeatherEntity is null!");
                     }
                 } else {
-                    Log.e(TAG, "Response is not successful! Code: " + response.code());
+                    Log.e(TAG, "Response error! Code: " + response.code());
                 }
+                update(context, entity, appWidgetManager, appWidgetIds);
             }
 
             @Override
             public void onFailure(Call<WeatherEntity> call, Throwable t) {
+                update(context, null, appWidgetManager, appWidgetIds);
                 Log.e(TAG, "Response failed!");
                 t.printStackTrace();
             }
@@ -56,30 +60,38 @@ public class WeatherWidget extends AppWidgetProvider {
 
     private void update(Context context, WeatherEntity entity, AppWidgetManager appWidgetManager, int[] ids) {
 
-        final Intent intent = new Intent(context, WeatherWidget.class);
-        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+        String dayOfMonth = null;
+        String month = null;
+        String temperature = null;
+        String location = null;
 
-        String dayOfMonth = getDayOfMonth();
-        String month = getMonth(context);
-        String temperature = getTemperature(entity);
-        String location = getLocation(entity);
-        RemoteViews remoteViews;
+        if (entity != null) {
+            dayOfMonth = getDayOfMonth();
+            month = getMonth(context);
+            temperature = getTemperature(entity);
+            location = getLocation(entity);
+        }
+
 
         for (final int id : ids) {
-            remoteViews = new RemoteViews(context.getPackageName(),
+            final RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
                     R.layout.widget);
 
-            remoteViews.setTextViewText(R.id.txt_day_of_month, dayOfMonth);
-            remoteViews.setTextViewText(R.id.txt_month, month);
-            remoteViews.setTextViewText(R.id.txt_location, location);
-            remoteViews.setTextViewText(R.id.txt_temperature, temperature);
+            if (entity != null) {
+                remoteViews.setTextViewText(R.id.txt_day_of_month, dayOfMonth);
+                remoteViews.setTextViewText(R.id.txt_month, month);
+                remoteViews.setTextViewText(R.id.txt_location, location);
+                remoteViews.setTextViewText(R.id.txt_temperature, temperature);
+            }
 
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
-                    0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            final Intent intent = new Intent(context, WeatherWidget.class);
+            intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
 
             remoteViews.setOnClickPendingIntent(R.id.btn_refresh, pendingIntent);
-            appWidgetManager.updateAppWidget(ids, remoteViews);
+            appWidgetManager.updateAppWidget(new ComponentName(context, WeatherWidget.class), remoteViews);
         }
 
     }
