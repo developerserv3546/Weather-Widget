@@ -1,4 +1,4 @@
-package com.developer35.serega.weatherwidget;
+package com.developer35.serega.weatherwidget.apis;
 
 
 import com.developer35.serega.weatherwidget.entities.WeatherEntity;
