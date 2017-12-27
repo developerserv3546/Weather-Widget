@@ -21,6 +21,7 @@ import retrofit2.Response;
 public class WeatherWidget extends AppWidgetProvider {
 
     private static final String TAG = "WeatherWidget";
+    private static final String FAHRENHEIT = " F";
 
     @Override
     public void onUpdate(final Context context, final AppWidgetManager appWidgetManager, final int[] appWidgetIds) {
@@ -36,7 +37,7 @@ public class WeatherWidget extends AppWidgetProvider {
                 if (response.isSuccessful()) {
                     WeatherEntity entity = response.body();
                     if (entity != null) {
-                        updateWidget(context, entity, appWidgetManager, appWidgetIds);
+                        update(context, entity, appWidgetManager, appWidgetIds);
                     } else {
                         Log.e(TAG, "WeatherEntity is null!");
                     }
@@ -53,12 +54,11 @@ public class WeatherWidget extends AppWidgetProvider {
         });
     }
 
-    private void updateWidget(Context context, WeatherEntity entity, AppWidgetManager appWidgetManager, int[] ids) {
+    private void update(Context context, WeatherEntity entity, AppWidgetManager appWidgetManager, int[] ids) {
 
         final Intent intent = new Intent(context, WeatherWidget.class);
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
-
 
         String dayOfMonth = getDayOfMonth();
         String month = getMonth(context);
@@ -79,8 +79,9 @@ public class WeatherWidget extends AppWidgetProvider {
                     0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             remoteViews.setOnClickPendingIntent(R.id.btn_refresh, pendingIntent);
-            appWidgetManager.updateAppWidget(id, remoteViews);
+            appWidgetManager.updateAppWidget(ids, remoteViews);
         }
+
     }
 
     private String getDayOfMonth() {
@@ -124,8 +125,8 @@ public class WeatherWidget extends AppWidgetProvider {
     }
 
     private String getTemperature(WeatherEntity weatherEntity) {
-        return weatherEntity.getCurrentObservationEntity()
-                .getTemperatureString();
+        return String.valueOf(weatherEntity.getCurrentObservationEntity()
+                .getTempF()) + FAHRENHEIT;
     }
 
     private String getLocation(WeatherEntity weatherEntity) {

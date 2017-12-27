@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="widget_root_layout_padding">5dp</dimen>
+    <dimen name="txt_view_day_size">32sp</dimen>
+    <dimen name="txt_view_month_size">18sp</dimen>
+    <dimen name="txt_view_temperature_size">32sp</dimen>
+    <dimen name="txt_view_location_size">18sp</dimen>
+    <dimen name="btn_text_size">18sp</dimen>
+    <dimen name="wrap_layout_btn_padding_top">5dp</dimen>
+</resources>

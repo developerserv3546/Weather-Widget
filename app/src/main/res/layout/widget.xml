@@ -2,43 +2,81 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:orientation="horizontal">
+    android:background="@color/colorBackground"
+    android:orientation="horizontal"
+    android:padding="@dimen/widget_root_layout_padding"
+    android:weightSum="4">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/colorBackground"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/txt_day_of_month"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/undefined_day"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/txt_view_day_size" />
 
         <TextView
             android:id="@+id/txt_month"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/january"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/txt_view_month_size" />
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:background="@color/colorBackground"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txt_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/undefined" />
+        <TextView
+            android:id="@+id/txt_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/undefined_temperature"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/txt_view_temperature_size" />
 
-    <TextView
-        android:id="@+id/txt_temperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/undefined" />
+        <TextView
+            android:id="@+id/txt_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/undefined"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/txt_view_location_size" />
 
-    <Button
-        android:id="@+id/btn_refresh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="refresh" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/colorBackground"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/wrap_layout_btn_padding_top">
+
+        <Button
+            android:id="@+id/btn_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/ic_refresh_32dp"
+            android:text="@string/refresh"
+            android:textAllCaps="false"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/btn_text_size" />
+    </RelativeLayout>
 
 </LinearLayout>
