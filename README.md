@@ -1,5 +1,5 @@
 # Weather-Widget
-Simple implementation of weather widget for Android with button update.
+Simple implementation of a weather widget for Android with a button update.
 
 # Preview
 
